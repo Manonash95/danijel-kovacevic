@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio - Danijel Kovačević</title>
+  <title>Portfolio – [Tvoje Ime]</title>
 
   <!-- Favicon — jednostavan on-brand znak (isti motiv kao kružić u navigaciji).
        Kad smisliš monogram/logo, samo zamijeni assets/images/favicon.svg tom datotekom. -->
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
 
   <!-- Osnovni meta opis — koristi ga Google u rezultatima pretrage -->
-  <meta name="description" content="Portfolio Danijel Kovačević — grafički i web dizajner. Vizualni identitet, packaging design, web dizajn i još mnogo toga." />
+  <meta name="description" content="Portfolio [Tvoje Ime] — grafički i web dizajner. Vizualni identitet, packaging design, web dizajn i još mnogo toga." />
 
   <!-- Open Graph — kako izgleda kartica kad podijeliš link (LinkedIn, Facebook, Slack...)
        NAPOMENA: zamijeni og:url kad kupiš domenu (npr. imeprezime.space), i og:image
        idealno zamijeni s pravom 1200×630px slikom (trenutno je hero pozadina kao privremeno rješenje). -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Portfolio – Danijel Kovačević" />
+  <meta property="og:title" content="Portfolio – [Tvoje Ime]" />
   <meta property="og:description" content="Grafički i web dizajner — vizualni identitet, packaging design, web dizajn." />
   <meta property="og:image" content="assets/images/hero.webp" />
   <meta property="og:url" content="https://imeprezime.space" />
 
   <!-- Twitter/X kartica -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Portfolio – Danijel Kovačević" />
+  <meta name="twitter:title" content="Portfolio – [Tvoje Ime]" />
   <meta name="twitter:description" content="Grafički i web dizajner — vizualni identitet, packaging design, web dizajn." />
   <meta name="twitter:image" content="assets/images/hero.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -45,6 +45,7 @@
       --dark-gray:   #1c1c1c;
       --mid-gray:    #4a4a4a;
       --light-gray:  #e8e8e4;
+      --contact-bg:  #f1f0ed; /* topla svijetlo-siva za kontakt pozadinu, blizu light-gray tona */
 
       --neo-blue:    #3b6ef8;     /* akcija, hover, interakcija   */
       --lime:        #a8e63d;     /* naglasci, vizualni fokus     */
@@ -605,16 +606,13 @@
 
     .more-card-img {
       aspect-ratio: 4/5;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
       background: var(--off-white);
       border: 1px solid var(--light-gray);
       border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.78rem;
-      color: rgba(0,0,0,0.25);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      display: block;
       margin-bottom: 14px;
       transition: border-color 0.2s, transform 0.2s;
     }
@@ -689,6 +687,7 @@
     #kontakt {
       padding: var(--section-pad) 0 calc(var(--section-pad) * 1.25);
       border-top: 1px solid var(--light-gray);
+      background: var(--contact-bg);
     }
 
     /* Naslov razvučen rubno-do-ruba: svaki red je flex red gdje
@@ -955,7 +954,7 @@
   <header class="site-header" id="site-header">
     <div class="container header-inner">
 
-      <a href="#" class="logo">Danijel<span>.</span>Kovačević</a>
+      <a href="#" class="logo">[Tvoje<span>.</span>Ime]</a>
 
       <nav>
         <ul class="nav">
@@ -1048,7 +1047,7 @@
                 <span class="badge badge--tool">Adobe Creative Cloud</span>
                 <span class="badge badge--tool">Figma</span>
                 <span class="badge badge--tool">WordPress</span>
-                <span class="badge badge--tool">Boxshot</span>
+                <span class="badge badge--tool">Claude</span>
                 <span class="badge badge--tool">Cursor</span>
               </div>
             </div>
@@ -1091,11 +1090,8 @@
             </div>
 
             <div class="work-gallery">
-              <!-- Zamijeni div.gallery-placeholder s:
-                   <img class="gallery-img" src="assets/images/projekt-01.jpg"
-                        alt="Opisni naslov projekta 01 – kategorija">
-                   (za ovih 5 glavnih radova NE stavljaj loading="lazy" — odmah su vidljivi) -->
-              <div class="gallery-placeholder">Slika projekta 01</div>
+              <!-- Samo zamijeni naziv datoteke i alt tekst kad slika bude spremna -->
+              <img class="gallery-img" src="assets/images/projekt-01.jpg" alt="Naziv projekta 01 – kategorija">
             </div>
 
           </article>
@@ -1116,7 +1112,7 @@
             </div>
 
             <div class="work-gallery">
-              <div class="gallery-placeholder">Slika projekta 02</div>
+              <img class="gallery-img" src="assets/images/projekt-02.jpg" alt="Naziv projekta 02 – kategorija">
             </div>
 
           </article>
@@ -1137,7 +1133,7 @@
             </div>
 
             <div class="work-gallery">
-              <div class="gallery-placeholder">Slika projekta 03</div>
+              <img class="gallery-img" src="assets/images/projekt-03.jpg" alt="Naziv projekta 03 – kategorija">
             </div>
 
           </article>
@@ -1158,7 +1154,7 @@
             </div>
 
             <div class="work-gallery">
-              <div class="gallery-placeholder">Slika projekta 04</div>
+              <img class="gallery-img" src="assets/images/projekt-04.jpg" alt="Naziv projekta 04 – kategorija">
             </div>
 
           </article>
@@ -1179,7 +1175,7 @@
             </div>
 
             <div class="work-gallery">
-              <div class="gallery-placeholder">Slika projekta 05</div>
+              <img class="gallery-img" src="assets/images/projekt-05.jpg" alt="Naziv projekta 05 – kategorija">
             </div>
 
           </article>
@@ -1200,98 +1196,95 @@
           </p>
         </div>
 
-        <!-- Zamijeni svaki div.more-card-img s:
-             <img class="more-card-img" src="assets/images/projekt-06.jpg"
-                  alt="Opisni naslov projekta – kategorija" loading="lazy">
-             loading="lazy" OVDJE ima smisla — ovih 15 je ispod scrolla, ne opterećuju prvo učitavanje. -->
+        <!-- Slike su spremne za zamjenu — samo prebaci pravu datoteku pod isto ime u assets/images/ -->
         <div class="more-grid reveal">
 
           <a href="#" class="more-card">
-            <div class="more-card-img">Oglas — časopis</div>
+            <img class="more-card-img" src="assets/images/projekt-06.jpg" alt="Naziv projekta – Oglas — časopis" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Print Design</p>
           </a>
 
           <a href="#" class="more-card">
-            <div class="more-card-img">Letak</div>
+            <img class="more-card-img" src="assets/images/projekt-07.jpg" alt="Naziv projekta – Letak" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Print Design</p>
           </a>
 
           <a href="#" class="more-card">
-            <div class="more-card-img">Brošura</div>
+            <img class="more-card-img" src="assets/images/projekt-08.jpg" alt="Naziv projekta – Brošura" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Editorial Design</p>
           </a>
 
           <a href="#" class="more-card">
-            <div class="more-card-img">Jumbo plakat</div>
+            <img class="more-card-img" src="assets/images/projekt-09.jpg" alt="Naziv projekta – Jumbo plakat" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Outdoor Advertising</p>
           </a>
 
           <a href="#" class="more-card">
-            <div class="more-card-img">Web dizajn</div>
+            <img class="more-card-img" src="assets/images/projekt-10.jpg" alt="Naziv projekta – Web dizajn" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Web Design</p>
           </a>
 
           <a href="#" class="more-card">
-            <div class="more-card-img">Vizualni identitet</div>
+            <img class="more-card-img" src="assets/images/projekt-11.jpg" alt="Naziv projekta – Vizualni identitet" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Visual Identity</p>
           </a>
 
           <a href="#" class="more-card more-card--extra">
-            <div class="more-card-img">Oglas — novine</div>
+            <img class="more-card-img" src="assets/images/projekt-12.jpg" alt="Naziv projekta – Oglas — novine" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Print Design</p>
           </a>
 
           <a href="#" class="more-card more-card--extra">
-            <div class="more-card-img">Katalog proizvoda</div>
+            <img class="more-card-img" src="assets/images/projekt-13.jpg" alt="Naziv projekta – Katalog proizvoda" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Editorial Design</p>
           </a>
 
           <a href="#" class="more-card more-card--extra">
-            <div class="more-card-img">Naljepnica za pakiranje</div>
+            <img class="more-card-img" src="assets/images/projekt-14.jpg" alt="Naziv projekta – Naljepnica za pakiranje" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Packaging Design</p>
           </a>
 
           <a href="#" class="more-card more-card--extra">
-            <div class="more-card-img">Poslovna kartica</div>
+            <img class="more-card-img" src="assets/images/projekt-15.jpg" alt="Naziv projekta – Poslovna kartica" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Visual Identity</p>
           </a>
 
           <a href="#" class="more-card more-card--extra">
-            <div class="more-card-img">Objave za društvene mreže</div>
+            <img class="more-card-img" src="assets/images/projekt-16.jpg" alt="Naziv projekta – Objave za društvene mreže" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Social Media Design</p>
           </a>
 
           <a href="#" class="more-card more-card--extra">
-            <div class="more-card-img">Billboard</div>
+            <img class="more-card-img" src="assets/images/projekt-17.jpg" alt="Naziv projekta – Billboard" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Outdoor Advertising</p>
           </a>
 
           <a href="#" class="more-card more-card--extra">
-            <div class="more-card-img">Pozivnica / event</div>
+            <img class="more-card-img" src="assets/images/projekt-18.jpg" alt="Naziv projekta – Pozivnica / event" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Print Design</p>
           </a>
 
           <a href="#" class="more-card more-card--extra">
-            <div class="more-card-img">Naslovnica časopisa</div>
+            <img class="more-card-img" src="assets/images/projekt-19.jpg" alt="Naziv projekta – Naslovnica časopisa" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Editorial Design</p>
           </a>
 
           <a href="#" class="more-card more-card--extra">
-            <div class="more-card-img">Video / motion</div>
+            <img class="more-card-img" src="assets/images/projekt-20.jpg" alt="Naziv projekta – Video / motion" loading="lazy">
             <p class="more-card-title">Naziv projekta</p>
             <p class="more-card-cat">Video Editing</p>
           </a>
@@ -1336,7 +1329,7 @@
             Imaš projekt, ideju ili samo pitanje?
             Slobodno se javi — volim razgovarati o dizajnu.
           </p>
-          <a href="mailto:kovacevicdanijel@yahoo.com" class="contact-btn">
+          <a href="mailto:tvoj@email.com" class="contact-btn">
             Pošalji poruku
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                  stroke="currentColor" stroke-width="2"
@@ -1362,7 +1355,7 @@
 
         <!-- Brand -->
         <div class="footer-brand">
-          <a href="#" class="logo">Danijel<span>.</span>Kovacevic</a>
+          <a href="#" class="logo">[Tvoje<span>.</span>Ime]</a>
           <p class="footer-tagline">Grafički &amp; web dizajner</p>
         </div>
 
@@ -1377,7 +1370,7 @@
         <div class="footer-social">
 
           <!-- E-mail -->
-          <a href="mailto:kovacevicdanijel@yahoo.com" class="social-pill">
+          <a href="mailto:tvoj@email.com" class="social-pill">
             <svg viewBox="0 0 24 24" stroke-width="1.5"
                  stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="4" width="20" height="16" rx="2"/>
@@ -1419,7 +1412,7 @@
 
       <!-- Bottom -->
       <div class="footer-bottom">
-        <p>© 2025 Danijel Kovačević. Sva prava pridržana.</p>
+        <p>© 2025 [Tvoje Ime]. Sva prava pridržana.</p>
         <div class="availability">
           <span class="pulse-dot" aria-hidden="true"></span>
           Dostupan za projekte
