@@ -170,9 +170,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 5px;
-      width: 40px;
-      height: 40px;
+      gap: 0;               /* gap gasimo — razmak kontroliramo translateY */
+      width: 44px;
+      height: 44px;
       background: transparent;
       border: none;
       cursor: pointer;
@@ -183,26 +183,48 @@
 
     .hamburger-bar {
       display: block;
-      width: 24px;
-      height: 2px;
+      width: 22px;
+      height: 1.5px;
       background: var(--white);
       border-radius: 2px;
-      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-                  opacity 0.25s ease,
-                  width 0.3s ease;
-      transform-origin: center;
+      /* Svaka crtica ima transition na transform, opacity i background */
+      transition:
+        transform  0.42s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity    0.22s ease,
+        background 0.2s  ease;
+      transform-origin: center center;
+      will-change: transform;
     }
 
-    /* X animacija — kad je meni otvoren */
+    /* Početni razmaci — crtice su razmaknute translateY-em */
+    .hamburger-bar:nth-child(1) { transform: translateY(-6px); }
+    .hamburger-bar:nth-child(2) { transform: translateY(0);    }
+    .hamburger-bar:nth-child(3) { transform: translateY(6px);  }
+
+    /* ── X stanje — kad je meni otvoren ── */
+
+    /* Gornja crtica: skupi se u centar pa rotira 45° */
     .hamburger.is-open .hamburger-bar:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
+      transform: translateY(0) rotate(45deg);
     }
+
+    /* Srednja crtica: nestaje prema centru (scale u X osi) */
     .hamburger.is-open .hamburger-bar:nth-child(2) {
       opacity: 0;
-      width: 0;
+      transform: scaleX(0);
     }
+
+    /* Donja crtica: skupi se u centar pa rotira -45° */
     .hamburger.is-open .hamburger-bar:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
+      transform: translateY(0) rotate(-45deg);
+    }
+
+    /* Hover efekt — blagi scale kad nije otvoren */
+    .hamburger:not(.is-open):hover .hamburger-bar:nth-child(1) {
+      transform: translateY(-7px) scaleX(0.75);
+    }
+    .hamburger:not(.is-open):hover .hamburger-bar:nth-child(3) {
+      transform: translateY(7px)  scaleX(0.75);
     }
 
     /* ─────────────────────────────────────────────
