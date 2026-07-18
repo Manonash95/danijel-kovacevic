@@ -229,6 +229,36 @@
       transform: translateX(0);
     }
 
+    /* Fix 2: X gumb unutar overlay-a — fiksiran gore desno */
+    .mobile-menu-close {
+      position: absolute;
+      top: 18px;
+      right: clamp(16px, 5vw, 32px);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,0.6);
+      transition: color 0.2s;
+    }
+
+    .mobile-menu-close:hover {
+      color: var(--white);
+    }
+
+    .mobile-menu-close svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
     .mobile-menu-nav {
       list-style: none;
       display: flex;
@@ -249,14 +279,14 @@
     .mobile-menu-nav a {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       padding: 22px 0;
       font-family: var(--font-display);
       font-size: clamp(1.6rem, 7vw, 2.2rem);
       font-weight: 800;
       color: rgba(255,255,255,0.55);
       letter-spacing: -0.01em;
-      transition: color 0.2s;
+      text-align: left;
       /* Svaka stavka se pojavljuje s blagim kašnjenjem */
       opacity: 0;
       transform: translateX(20px);
@@ -273,16 +303,18 @@
     .mobile-menu.is-open .mobile-menu-nav li:nth-child(2) a { transition-delay: 0.14s; }
     .mobile-menu.is-open .mobile-menu-nav li:nth-child(3) a { transition-delay: 0.20s; }
 
+    /* Fix 3: Plavi kružić — uvijek vidljiv (ne samo na hover) */
     .mobile-menu-nav a::before {
       content: '';
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: var(--neo-blue);
+      border: 1.5px solid var(--neo-blue);
       flex-shrink: 0;
-      opacity: 0;
-      transform: scale(0);
-      transition: opacity 0.2s, transform 0.2s;
+      /* uvijek vidljiv */
+      opacity: 1;
+      transform: scale(1);
+      transition: background 0.2s, border-color 0.2s;
     }
 
     .mobile-menu-nav a:hover {
@@ -290,15 +322,16 @@
     }
 
     .mobile-menu-nav a:hover::before {
-      opacity: 1;
-      transform: scale(1);
+      background: var(--neo-blue);
     }
 
-    /* Socijalni linkovi na dnu overlay menija */
+    /* Fix 4: Socijalni linkovi — ista lijeva linija kao nav stavke */
     .mobile-menu-footer {
       margin-top: 40px;
       display: flex;
-      gap: 16px;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
       opacity: 0;
       transform: translateY(10px);
       transition: opacity 0.35s ease 0.3s, transform 0.35s ease 0.3s;
@@ -316,6 +349,7 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       transition: color 0.2s;
+      text-align: left;
     }
 
     .mobile-menu-footer a:hover {
@@ -1087,6 +1121,11 @@
         align-items: center;
       }
 
+      /* Fix 1: veći padding da hero sadržaj ima zraka ispod headera */
+      .site-header {
+        padding: 18px 0 22px;
+      }
+
       /* Logo bez desktop margin offseta */
       .logo { margin-left: 0; }
 
@@ -1169,6 +1208,15 @@
 
   <!-- Mobile fullscreen overlay meni -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+
+    <!-- Fix 2: X gumb unutar overlay-a -->
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Zatvori izbornik">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+
     <nav>
       <ul class="mobile-menu-nav">
         <li><a href="#o-meni" class="mobile-nav-link">O meni</a></li>
@@ -1995,8 +2043,9 @@
   ══════════════════════════════════════════ -->
   <script>
     (() => {
-      const btn  = document.getElementById('hamburgerBtn');
-      const menu = document.getElementById('mobileMenu');
+      const btn   = document.getElementById('hamburgerBtn');
+      const menu  = document.getElementById('mobileMenu');
+      const closeBtn = document.getElementById('mobileMenuClose');
       const links = menu.querySelectorAll('.mobile-nav-link');
 
       function openMenu() {
@@ -2004,7 +2053,7 @@
         btn.classList.add('is-open');
         btn.setAttribute('aria-expanded', 'true');
         menu.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden'; /* zaključaj scroll dok je overlay otvoren */
+        document.body.style.overflow = 'hidden';
       }
 
       function closeMenu() {
@@ -2019,6 +2068,9 @@
         btn.classList.contains('is-open') ? closeMenu() : openMenu();
       });
 
+      /* X gumb unutar overlay-a */
+      closeBtn.addEventListener('click', closeMenu);
+
       /* Klik na link — zatvori meni i smooth-scrollaj na sekciju */
       links.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -2026,7 +2078,6 @@
           closeMenu();
           if (target) {
             e.preventDefault();
-            /* Mali timeout da overlay stigne izaći prije scrolla */
             setTimeout(() => {
               target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 320);
